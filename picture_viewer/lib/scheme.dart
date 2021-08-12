@@ -61,6 +61,23 @@ class Thumbnail {
   }
 }
 
+class Attribute {
+  final int picture_id;
+  final String name;
+  final String value;
+
+  Attribute(
+      {required this.picture_id, required this.name, required this.value});
+
+  Map<String, dynamic> toMap() {
+    return {'picture_id': picture_id, 'name': name, 'value': value};
+  }
+
+  @override
+  String toString() {
+    return 'Attribute{picture_id: $picture_id, name: $name, value: $value}';
+  }
+}
 
 /**
  * Futer<ByteData> Asset::getByteData()

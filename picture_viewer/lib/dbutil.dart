@@ -4,8 +4,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 Future<Database> getDB() async {
-  var dbdir = await getDatabasesPath();
-  final String dbpath = join(dbdir, '~www/picture-viewer.db');
+  final String dbpath =
+      join(await getDatabasesPath(), '~www/picture-viewer.db');
 
   if (!(await databaseExists(dbpath))) {
     // dbが存在しない場合は適当なデータベースを作成して保存する

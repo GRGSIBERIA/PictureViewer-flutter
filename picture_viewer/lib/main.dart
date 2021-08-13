@@ -71,25 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
               body: TabBarView(
                 children: [
                   ImportPageWidget(),
-                  CustomScrollView(slivers: <Widget>[
-                    SliverAppBar(
-                        expandedHeight: 150,
-                        flexibleSpace: const FlexibleSpaceBar(
-                            title: TextField(
-                                decoration: InputDecoration(
-                                    hintText: 'keywords ...')))),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                        return Container(
-                            color: index.isOdd ? Colors.white : Colors.black12,
-                            height: 100.0,
-                            child: Center(
-                              child: Text('$index'),
-                            ));
-                      }),
-                    )
-                  ]),
+                  SearchPageWidget(),
                   Icon(Icons.image),
                   Icon(Icons.local_bar)
                 ],

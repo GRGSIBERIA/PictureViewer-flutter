@@ -43,3 +43,33 @@ class _ImportPageState extends State<ImportPageWidget> {
         ));
   }
 }
+
+class SearchPageWidget extends StatefulWidget {
+  SearchPageWidget({Key? key}) : super(key: key);
+
+  @override
+  State<SearchPageWidget> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPageWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(slivers: <Widget>[
+      SliverAppBar(
+          expandedHeight: 150,
+          flexibleSpace: const FlexibleSpaceBar(
+              title: TextField(
+                  decoration: InputDecoration(hintText: 'keywords ...')))),
+      SliverList(
+        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+          return Container(
+              color: index.isOdd ? Colors.white : Colors.black12,
+              height: 100.0,
+              child: Center(
+                child: Text('$index'),
+              ));
+        }),
+      )
+    ]);
+  }
+}

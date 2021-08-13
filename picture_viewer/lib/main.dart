@@ -76,7 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         expandedHeight: 150,
                         flexibleSpace: const FlexibleSpaceBar(
                             title: TextField(
-                                decoration: InputDecoration(hintText: '')))),
+                                decoration: InputDecoration(
+                                    hintText: 'keywords ...')))),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,49 +44,6 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
-}
-
-class ImportPageWidget extends StatefulWidget {
-  ImportPageWidget({Key? key}) : super(key: key);
-
-  @override
-  State<ImportPageWidget> createState() => _ImportPageState();
-}
-
-class _ImportPageState extends State<ImportPageWidget> {
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                  hintText: 'Enter importing directory path'),
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter correct directory path';
-                }
-                return null;
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: ElevatedButton(
-                  onPressed: () {
-                    // ディレクトリが入力され、かつボタンが押下されたとき
-                    if (_formKey.currentState!.validate()) {
-                      // ディレクトリを捜査して画像ファイルをDBに入力する
-                    }
-                  },
-                  child: const Text('Submit')),
-            )
-          ],
-        ));
-  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {

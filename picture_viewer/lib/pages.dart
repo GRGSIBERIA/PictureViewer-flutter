@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 class ImportPageWidget extends StatefulWidget {
@@ -9,7 +10,8 @@ class ImportPageWidget extends StatefulWidget {
 
 class _ImportPageState extends State<ImportPageWidget> {
   final _formKey = GlobalKey<FormState>();
-  var indicate = 0.0;
+  String? _targetDirectory = '';
+  double _indicate = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +21,39 @@ class _ImportPageState extends State<ImportPageWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              decoration: const InputDecoration(
-                  hintText: 'Enter importing directory path'),
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter correct directory path';
-                }
-                return null;
-              },
-            ),
+                decoration: const InputDecoration(
+                    hintText: 'Enter importing directory path'),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter correct directory path';
+                  }
+                  return null;
+                },
+                onSaved: (String? value) {
+                  _targetDirectory = value;
+                }),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // ディレクトリが入力され、かつボタンが押下されたとき
                     if (_formKey.currentState!.validate()) {
                       // ディレクトリを捜査して画像ファイルをDBに入力する
+                      _formKey.currentState!.save();
+
+                      final directory = Directory(_targetDirectory!);
+                      var there = await directory.exists();
+                      if (!there) return;
+
+                      print(_targetDirectory);
+                      /*
+                      if (!directory.existsSync()) return;
+
+                      for (final path in directory.listSync(
+                          recursive: true, followLinks: false)) {
+                        debugPrint('=== $path');
+                      }
+                      */
                     }
                   },
                   child: const Text('Import')),
